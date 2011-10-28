@@ -7,6 +7,7 @@
   <taskdef name="jscomp"
            classname="com.google.javascript.jscomp.ant.CompileTask"/>
   <taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+  <taskdef resource="net/sf/antcontrib/antlib.xml"/>
 
   <!-- Locations -->
   <property name="srcdir" value="source"/>
