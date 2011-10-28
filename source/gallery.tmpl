@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>John Driscoll</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    <meta name="description"
+          content="Home of web developer John Driscoll">
+    <meta name="author" content="John Driscoll"><#if
+    fill="dev">
+
+    <link title="Minified source" rel="alternate" href="/">
+    <link rel="stylesheet" href="gallery.css"><#else>
+    <link rel="copyright" href="copyright.html">
+    <link title="Development source" rel="alternate" href="gallery.html">
+    <style><#include "gallery.css" parse=false></style></#if>
+    <noscript><#if
+    fill="dev"><link rel="stylesheet" href="noscript.css"><#else
+    ><style><#include "noscript.css" parse=false></style></#if
+    ></noscript>
+    <!-- Track visitors -->
+<#assign h =
+"    <script>
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-16395519-5']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ?
+                  'https://ssl' : 'http://www') +
+          '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+      })();
+    </script>"><#if fill="dev">${h}<#else><#list
+    h?split("\n") as x>${x?trim} </#list></#if>
+  </head>
+
+  <body>
+
+    <#if fill="dev"><!-- Load all the JS first.
+    There isn't much to see without it. -->
+    <script src="raphael.js"></script>
+    <script src="jquery.js"></script>
+    <script src="jquery.effects.core.js"></script>
+    <script src="gallery.js"></script>
+    <script src="icons.js"></script>
+    <script src="info.js"></script>
+    <script src="pool.js"></script>
+    <script src="flower.js"></script>
+    <script src="house.js"></script>
+    <script src="signature-paths.js"></script>
+    <script src="signature.js"></script><#else>
+    <script><#include "min.js" parse=false></script></#if>
+
+    <h1 class="hide">John Driscoll</h1>
+
+    <a href="http://github.com/johnoliverdriscoll/johndriscoll.name">
+      <img style="position: absolute; top: 0; right: 0; border: 0;"
+           src="https://a248.e.akamai.net/assets.github.com/img/71eeaab9d563c2b3c590319b398dd35683265e85/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67"
+           alt="Fork me on GitHub">
+    </a>
+
+    <div id="frame">
+      <div id="rinfo">
+        <div id="info">
+
+          <p id="isig">
+            Home of web developer John Driscoll.
+            <span><a href="http://twitter.com/subdeuxed">
+            Follow me on Twitter</a>.</span>
+          </p>
+
+          <p id="ihtml5">
+            Presented with <a href="http://html5.org">HTML5</a> and
+            <span><a href="http://www.w3.org/Graphics/SVG/">SVG</a>.</span>
+<#assign h =
+"            <script id=\"sctrl\">gal.write('sctrl', ' \\
+              Controls: Space bar, A, S, D, and F keys.')</script>"><#if
+              fill="dev">${h}<#else><#list
+              h?split("\n") as x>${x?replace(" \\","")?trim} </#list></#if>
+          </p>
+
+          <noscript><h2>Projects</h2></noscript>
+
+          <p id="ipool">
+            <span><a href="http://stan-js.googlecode.com">Stan.js</a>;</span>
+            Compatibility library for an old browser.
+          </p>
+
+          <p id="iflower">
+            <span><a href="http://qtpy.mobi">QTPy</a>;</span>
+            Quantum tic tac toe bot.
+          </p>
+
+          <p id="ihouse">
+            <span><a href="http://smoodui.appspot.com">Smood</a>;</span>
+            Online layout creator.
+          </p>
+
+<#assign h =
+"          <script id=\"sinfo\">gal.write('sinfo', ' \\
+            <p id=\"ijquery\"> \\
+              Write less, do more with \\
+              <span><a href=\"http://jquery.com\">jQuery</a>.</span> \\
+            </p> \\
+            <p id=\"irjs\"> \\
+              SVG rendered with \\
+              <span><a href=\"http://raphaeljs.com\">Raphaël</a>.</span> \\
+            </p>')</script>"><#if fill="dev">${h}<#else><#list
+            h?split("\n") as x>${x?replace(" \\","")?trim} </#list></#if>
+
+        </div>
+      </div>
+
+<#assign h =
+"      <script id=\"sproj\">gal.write('sproj', ' \\
+        <div id=\"rprojects\"> \\
+          <ul id=\"projects\"> \\
+            <li id=\"lpool\"> \\
+              <a id=\"pool\" href=\"http://stan-js.googlecode.com\"> \\
+                <span class=\"hide\">Stan.js</span> \\
+              </a> \\
+            </li> \\
+            <li id=\"lflower\"> \\
+              <a id=\"flower\" href=\"http://qtpy.mobi\"> \\
+                <span class=\"hide\">QTPy</span> \\
+              </a> \\
+            </li> \\
+            <li id=\"lhouse\"> \\
+              <a id=\"house\" href=\"http://smoodui.appspot.com\"> \\
+                <span class=\"hide\">Smood</span> \\
+              </a> \\
+            </li> \\
+          </ul> \\
+        </div>')</script>"><#if fill="dev">${h}<#else><#list
+      h?split("\n") as x>${x?replace(" \\","")?trim} </#list></#if>
+
+      <div id="rsig">
+
+        <noscript><h2>Links</h2></noscript>
+
+<#assign h =
+"        <script id=\"ssig\">gal.write('ssig', ' \\
+          <a id=\"sig\" \\
+             href=\"http://twitter.com/#!/subdeuxed\"></a>')</script>"
+          ><#if fill="dev">${h}<#else><#list
+          h?split("\n") as x>${x?replace(" \\","")?trim} </#list></#if>
+
+        <ul>
+
+          <li>
+            <a id="html5" title="Valid HTML5"
+               href="http://validator.w3.org/check/referer">
+              <span class="hide">Valid HTML5</span>
+            </a>
+          </li>
+
+          <li>
+            <a id="rjs" title="Raphaël"
+               href="http://raphaeljs.com">
+              <span class="hide">Raphaël</span>
+            </a>
+          </li>
+
+          <li>
+            <a id="jquery" title="jQuery"
+               href="http://jquery.com">
+              <span class="hide">jQuery</span>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<project name="gallery" basedir="." default="dev">
+
+  <!-- Tasks -->
+  <taskdef name="fill"
+           classname="fmpp.tools.AntTask"/>
+  <taskdef name="jscomp"
+           classname="com.google.javascript.jscomp.ant.CompileTask"/>
+  <taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+
+  <!-- Locations -->
+  <property name="srcdir" value="source"/>
+  <property name="pubdir" value="public"/>
+  <property name="blddir" value="build"/>
+
+  <!-- Javascript sources -->
+  <property name="js"
+            value="raphael.js,jquery.js,jquery.effects.core.js,gallery.js,icons.js,info.js,pool.js,flower.js,house.js,signature-paths.js,signature.js"/>
+
+  <!-- Checks -->
+  <target name="checks">
+    <mkdir dir="${pubdir}"/>
+    <mkdir dir="${blddir}"/>
+    <!-- Only run the dev fill if the gallery template file is modified -->
+    <uptodate property="dev.utd" targetFile="${pubdir}/gallery.html">
+      <srcfiles dir="${srcdir}" includes="gallery.tmpl"/>
+    </uptodate>
+    <!-- Run the min fill if anything has been modified -->
+    <uptodate property="min.utd" targetFile="${pubdir}/index.html">
+      <srcfiles dir="${srcdir}"
+                includes="gallery.tmpl,${js},gallery.css,noscript.css"/>
+    </uptodate>
+    <uptodate property="min.css.utd"
+              targetFile="${pubdir}/index.html">
+      <srcfiles dir="${srcdir}" includes="gallery.css,noscript.css"/>
+    </uptodate>
+  </target>
+
+  <!-- Common -->
+  <target name="common" depends="checks">
+    <copy todir="${pubdir}">
+      <fileset dir="${srcdir}"
+               includes="favicon.ico,copyright.html,resume.tex,resume.pdf">
+        <different targetdir="${pubdir}"/>
+      </fileset>
+    </copy>
+    <copy file="${srcdir}/gallery.tmpl" todir="${blddir}"/>
+  </target>
+
+  <!-- Development fill -->
+  <target name="dev" depends="common,filldev">
+    <!-- Copy source files that have been modified to the public dir -->
+    <copy todir="${pubdir}">
+      <fileset dir="${srcdir}"
+               includes="${js},gallery.css,noscript.css">
+        <different targetdir="${pubdir}"/>
+      </fileset>
+    </copy>
+  </target>
+  <target name="filldev" depends="checks" unless="${dev.utd}">
+    <fill sourceFile="${blddir}/gallery.tmpl"
+          outputFile="${pubdir}/gallery.html"
+          data="fill:dev"/>
+  </target>
+
+  <!-- Minified file -->
+  <target name="min" depends="common,fillmin"/>
+  <target name="fillmin" depends="checks,minjs,mincss" unless="${min.utd}">
+    <fill sourceFile="${blddir}/gallery.tmpl"
+          outputFile="${blddir}/index.html"
+          data="fill:min"/>
+    <java jar="${ant.home}/lib/htmlcompressor.jar"
+          input="${blddir}/index.html"
+          failonerror="true"
+          fork="true">
+      <arg value="-o"/>
+      <arg path="${pubdir}/index.html"/>
+    </java>
+  </target>
+  <!-- Minify each JS file individually, then concat them. -->
+  <target name="minjs" depends="checks" unless="${min.utd}">
+    <for list="${js}" parallel="true" param="fname">
+      <sequential>
+        <jscomp output="${blddir}/@{fname}">
+          <sources dir="${srcdir}" files="@{fname}"/>
+        </jscomp>
+      </sequential>
+    </for>
+    <concat destfile="${blddir}/min.js">
+      <filelist dir="${blddir}" files="${js}"/>
+    </concat>
+  </target>
+  <!-- Minify CSS -->
+  <target name="mincss" depends="checks" unless="${min.css.utd}">
+    <java jar="${ant.home}/lib/yuicompressor.jar"
+          input="${srcdir}/gallery.css"
+          failonerror="true"
+          fork="true">
+      <arg value="--type"/>
+      <arg value="css"/>
+      <arg value="-o"/>
+      <arg value="${blddir}/gallery.css"/>
+    </java>
+    <java jar="${ant.home}/lib/yuicompressor.jar"
+          input="${srcdir}/noscript.css"
+          failonerror="true"
+          fork="true">
+      <arg value="--type"/>
+      <arg value="css"/>
+      <arg value="-o"/>
+      <arg value="${blddir}/noscript.css"/>
+    </java>
+  </target>
+
+  <!-- Delete build and public directories -->
+  <target name="clean">
+    <delete dir="${blddir}"/>
+    <delete dir="${pubdir}"/>
+  </target>
+
+</project>

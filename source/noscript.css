@@ -1,0 +1,13 @@
+/*
+ * Noscript.css
+ * Copyright 2011 John Driscoll
+ */
+
+body { padding: 5% !important; }
+body #frame { width: auto; height: auto; }
+body p { color: #666; }
+a { color: #999 !important; }
+#rprojects { display: none; }
+body #rsig ul { padding: 0;  }
+body #rsig li { float: none; margin-left: 5px }
+#info h2 { margin-left: 0; }
