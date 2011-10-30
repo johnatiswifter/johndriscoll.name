@@ -1,7 +1,8 @@
 # Dependencies
-
-## To build
+* node
+* node-paperboy
 * ant
+* ant_latex
 * ant-contrib
 * yui-compressor
 * closure compiler
@@ -10,13 +11,11 @@
 * fmpp
 * bsh
 * oro
-
-## To serve
-* Node.js
-* Paperboy
+* pdflatex
+* pstricks
 
 # Building
-    ant dev min
+    ant dev min resume
 
 # Deploying
     node source/app.js

@@ -6,6 +6,7 @@
            classname="fmpp.tools.AntTask"/>
   <taskdef name="jscomp"
            classname="com.google.javascript.jscomp.ant.CompileTask"/>
+  <taskdef name="latex" classname="de.dokutransdata.antlatex.LaTeX"/>
   <taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
   <taskdef resource="net/sf/antcontrib/antlib.xml"/>
 
@@ -35,13 +36,16 @@
               targetFile="${pubdir}/index.html">
       <srcfiles dir="${srcdir}" includes="gallery.css,noscript.css"/>
     </uptodate>
+    <uptodate property="resume.utd" targetFile="${pubdir}/resume.pdf">
+      <srcfiles dir="${srcdir}" includes="resume.tex"/>
+    </uptodate>
   </target>
 
   <!-- Common -->
   <target name="common" depends="checks">
     <copy todir="${pubdir}">
       <fileset dir="${srcdir}"
-               includes="favicon.ico,copyright.html,resume.tex,resume.pdf">
+               includes="favicon.ico,copyright.html">
         <different targetdir="${pubdir}"/>
       </fileset>
     </copy>
@@ -112,6 +116,17 @@
       <arg value="${blddir}/noscript.css"/>
     </java>
   </target>
+
+  <!-- Build PDF resume -->
+  <target name="resume" depends="checks" unless="${resume.utd}">
+    <copy todir="${blddir}" file="${srcdir}/resume.tex"/>
+    <copy todir="${pubdir}" file="${srcdir}/resume.tex"/>
+    <latex pdftex="on"
+           workingDir="${blddir}"
+           passThruLaTeXParameters="-shell-escape"
+           latexfile="resume.tex"/>
+    <copy todir="${pubdir}" file="${blddir}/resume.pdf"/>
+  </target>      
 
   <!-- Delete build and public directories -->
   <target name="clean">

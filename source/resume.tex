@@ -8,10 +8,11 @@
 
 % Import macros
 \usepackage{fullpage}
-\usepackage[hypertex]{hyperref}
 \usepackage{setspace}
 \usepackage{geometry} 
 \usepackage{tabulary}
+\usepackage{auto-pst-pdf}
+\usepackage{pstricks}
 \usepackage{pst-barcode}
 
 % Page style
@@ -92,64 +93,56 @@
 
 %% Recent projects
 \noindent
-\large\textbf{Recent Projects}
+\large\textbf{Recent Projects}\\
 
 % Stan.js
 \noindent
-\begin{tabular*}{\textwidth}{ll@{\extracolsep{\fill}}ll}
-  \begin{pspicture}(0.9in,0.5in)
-    \psbarcode{http://code.google.com/p/stan-js}{width=0.25 height=0.25}{qrcode}
-  \end{pspicture} &
-  \large{Stan.js} &
-  \textsl{code.google.com/p/stan-js} &
-\end{tabular*}\\\\
+\begin{pspicture}(0.25in,0.25in)
+  \psbarcode{http://code.google.com/p/stan-js}{width=0.25 height=0.25}{qrcode}
+\end{pspicture}\hspace{0.45in}
+\large{Stan.js}\hspace{2.4in}
+\textsl{code.google.com/p/stan-js}\\
 {\small\noindent
 Free Javascript library that fixes bugs and missing features for
 modern CSS layout support in MSIE versions 5.5, 6, 7 and 8.
-}
+}\\
 
 % QTPy
 \noindent
-\begin{tabular*}{\textwidth}{ll@{\extracolsep{\fill}}ll}
-  \begin{pspicture}(0.9in,0.5in)
-    \psbarcode{http://qtpy.mobi}{width=0.25 height=0.25}{qrcode}
-  \end{pspicture} &
-  \large{QTPy} &
-  \textsl{qtyp.mobi} &
-\end{tabular*}\\\\
+\begin{pspicture}(0.25in,0.25in)
+  \psbarcode{http://qtpy.mobi}{width=0.25 height=0.25}{qrcode}
+\end{pspicture}\hspace{0.45in}
+\large{QTPy}\hspace{2.4in}
+\textsl{qtyp.mobi}\\
 {\small\noindent
 Created in a week as part of my application to work at reddit.  QTPy is a 
 machine-learning strategist and the first Quantum Tic-tac-toe playing bot. 
 Implemented in Python for the Google App Engine.  Compatible as a iPhone
 native webapp.
-}
+}\\
 
 % Smood
 \noindent
-\begin{tabular*}{\textwidth}{ll@{\extracolsep{\fill}}ll}
-  \begin{pspicture}(0.9in,0.5in)
-    \psbarcode{http://smoodui.appspot.com}{width=0.25 height=0.25}{qrcode}
-  \end{pspicture} &
-  \large{Smood} &
-  \textsl{smoodui.appspot.com} &
-\end{tabular*}\\\\
+\begin{pspicture}(0.25in,0.25in)
+  \psbarcode{http://smoodui.appspot.com}{width=0.25 height=0.25}{qrcode}
+\end{pspicture}\hspace{0.45in}
+\large{Smood}\hspace{2.4in}
+\textsl{smoodui.appspot.com}\\
 {\small\noindent
 Freeform, in-browser webpage creator and host.  Coded in Python for the 
 Google App Engine and Datastore with tons of Javascript and Ajax for the
 user interface.  Layouts created with this service render identically in all 
 major layout engines.  Although the editor is only officially supported in
 Firefox, Google Chrome support is nearly complete.
-}
+}\\
 
 % BBCue
 \noindent
-\begin{tabular*}{\textwidth}{ll@{\extracolsep{\fill}}ll}
-  \begin{pspicture}(0.9in,0.5in)
-    \psbarcode{pastebin.com/gADLvszc}{width=0.25 height=0.25}{qrcode}
-  \end{pspicture} &
-  \large{BBCue} &
-  \textsl{pastebin.com/gADLvszc} &
-\end{tabular*}\\\\
+\begin{pspicture}(0.25in,0.25in)
+  \psbarcode{pastebin.com/gADLvszc}{width=0.25 height=0.25}{qrcode}
+\end{pspicture}\hspace{0.45in}
+\large{BBCue}\hspace{2.4in}
+\textsl{pastebin.com/gADLvszc}\\
 {\small\noindent
 Robust Shell script for burning CDs using CUE data files.  This script aims
 to make the backup process of Audio CDs painless by compensating for bugs in 
