@@ -11,7 +11,7 @@ paperboy = require('paperboy'),
 
 // Server settings
 webroot = path.join(path.dirname(__filename), '../public'),
-port = 80;
+port = 8080;
 
 http.createServer(
   function(req, res) {
