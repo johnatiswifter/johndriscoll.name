@@ -230,6 +230,7 @@ var gal = window.gal = {
 gal.init();
 $(document).ready(
   function() {
+
     // Soul_Master custom bug fix for ticket #8052
     if ( jQuery.browser.msie && jQuery.browser.version >= 9 ) {
       jQuery.support.noCloneEvent = true;
@@ -251,6 +252,18 @@ $(document).ready(
       $('head').append($('<style> .hide { display: none; } </style>'));
       for (var i = 0; i < gal.writes.length; i++) {
         $('#' + gal.writes[i].id).replaceWith(gal.writes[i].html);
+      }
+      // Chrome SVG rending bug when in a link
+      // http://code.google.com/p/chromium/issues/detail?id=107826
+      if (navigator.userAgent.match(/Chrome\/16\.0\.912\.63/)) {
+        $('#pool,#flower,#house,#html5,#rjs,#jquery,#git,#sig').each(function() {
+          $div = $($(this).clone()
+                   .appendTo('<div>').parent()
+                   .html().replace(/(<\/?)a(\s|>)/, "$1div$2"));
+          $(this).replaceWith($div);
+          $div.attr('onclick', 'location="' + $div.attr('href') + '"')
+            .css('cursor', 'pointer');
+        });
       }
       gal.play();
     } else {
