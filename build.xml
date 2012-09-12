@@ -97,7 +97,7 @@
   </target>
   <!-- Minify CSS -->
   <target name="mincss" depends="checks" unless="${min.css.utd}">
-    <java jar="${ant.home}/lib/yuicompressor.jar"
+    <java jar="${ant.home}/../yui-compressor/yui-compressor.jar"
           input="${srcdir}/gallery.css"
           failonerror="true"
           fork="true">
@@ -106,7 +106,7 @@
       <arg value="-o"/>
       <arg value="${blddir}/gallery.css"/>
     </java>
-    <java jar="${ant.home}/lib/yuicompressor.jar"
+    <java jar="${ant.home}/../yui-compressor/yui-compressor.jar"
           input="${srcdir}/noscript.css"
           failonerror="true"
           fork="true">
